@@ -79,6 +79,23 @@ bluesky_stock_analyzer/
 │   ├── config.py
 │   └── routes.py
 ├── data/
+├── tests/
+│   ├── conftest.py
+│   ├── __init__.py
+│   ├── README.md
+│   ├── unit/
+│   │   ├── __init__.py
+│   │   ├── test_bluesky_api.py
+│   │   ├── test_data_processor.py
+│   │   └── test_sentiment_analyzer.py
+│   ├── integration/
+│   │   ├── __init__.py
+│   │   ├── test_api_sentiment.py
+│   │   └── test_processor_sentiment.py
+│   └── functional/
+│       ├── __init__.py
+│       ├── test_app.py
+│       └── test_routes.py
 ├── .env
 ├── .gitignore
 ├── requirements.txt
@@ -95,6 +112,38 @@ bluesky_stock_analyzer/
 - Stock market trend analysis
 - User-friendly web interface
 
+## Testing
+
+The project includes a comprehensive test suite covering unit, integration, and functional tests.
+
+### Running Tests
+
+To run all tests:
+
+```bash
+pytest
+```
+
+To run tests with coverage:
+
+```bash
+pytest --cov=app tests/
+```
+
+To generate a coverage report:
+
+```bash
+pytest --cov=app --cov-report=html tests/
+```
+
+### Test Categories
+
+- **Unit Tests**: Test individual components in isolation
+- **Integration Tests**: Test interactions between components
+- **Functional Tests**: Test the application as a whole
+
+For more details about testing, see the [tests/README.md](tests/README.md) file.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -104,4 +153,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Bluesky API
 - NLTK, TextBlob, and VADER for sentiment analysis
 - Flask web framework
-- Plotly and Matplotlib for data visualization 
+- Plotly and Matplotlib for data visualization
+- Pytest for testing 
