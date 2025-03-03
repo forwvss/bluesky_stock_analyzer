@@ -21,23 +21,25 @@ This project aims to analyze stock market trends by processing and analyzing soc
 ## Setup and Installation
 
 1. Clone the repository:
-```
+```bash
 git clone https://github.com/yourusername/bluesky_stock_analyzer.git
 cd bluesky_stock_analyzer
 ```
 
-2. Create a virtual environment:
-```
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+2. Create and activate a conda environment:
+```bash
+# Create environment with Python 3.9 (recommended for compatibility)
+conda create -n bluesky_stock python=3.9
+conda activate bluesky_stock
+
+# Install PyTorch with CUDA support (if you have an NVIDIA GPU)
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+
+# Install other dependencies
+conda install -c conda-forge flask flask-wtf python-dotenv requests pandas numpy matplotlib plotly nltk textblob vaderSentiment scikit-learn gunicorn pytest pytest-cov pytest-mock coverage
 ```
 
-3. Install dependencies:
-```
-pip install -r requirements.txt
-```
-
-4. Set up environment variables:
+3. Set up environment variables:
 Create a `.env` file in the root directory with the following variables:
 ```
 FLASK_APP=run.py
@@ -47,7 +49,7 @@ BLUESKY_USERNAME=your_bluesky_username
 BLUESKY_PASSWORD=your_bluesky_password
 ```
 
-5. Run the application:
+4. Run the application:
 ```
 flask run
 ```
