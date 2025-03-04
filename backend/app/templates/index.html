@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Bluesky Stock Analyzer{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto text-center">
+        <h1 class="display-4 mb-4">Bluesky Stock Analyzer</h1>
+        <p class="lead mb-5">
+            Analyze stock market trends using social media data from Bluesky.
+            Our platform uses advanced sentiment analysis to identify market patterns.
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary btn-lg px-4 gap-3">
+                <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="row g-4 py-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <i class="fas fa-cloud-download-alt fa-3x text-primary mb-3"></i>
+                <h3 class="card-title">Data Collection</h3>
+                <p class="card-text">
+                    Fetch real-time data from Bluesky API based on keywords related to stocks and financial markets.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <i class="fas fa-brain fa-3x text-primary mb-3"></i>
+                <h3 class="card-title">Sentiment Analysis</h3>
+                <p class="card-text">
+                    Analyze the sentiment of social media posts using advanced NLP techniques and machine learning models.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                <h3 class="card-title">Market Insights</h3>
+                <p class="card-text">
+                    Visualize sentiment trends and correlate them with stock market movements to identify patterns.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Get Started</h3>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('main.fetch_data') }}" method="post" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="keywords" class="form-label">Keywords (comma-separated)</label>
+                        <input type="text" class="form-control" id="keywords" name="keywords" 
+                               placeholder="AAPL, TSLA, MSFT, crypto, bitcoin, stock market" required>
+                        <div class="form-text">Enter stock symbols, company names, or financial terms</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="limit" class="form-label">Number of posts to fetch (per keyword)</label>
+                        <input type="number" class="form-control" id="limit" name="limit" 
+                               value="100" min="10" max="500" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search me-2"></i>Fetch Data
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-lg-12">
+        <h2 class="text-center mb-4">How It Works</h2>
+        <div class="timeline">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <div class="timeline-step">
+                        <div class="timeline-content">
+                            <div class="inner-circle bg-primary">
+                                <i class="fas fa-cloud-download-alt text-white"></i>
+                            </div>
+                            <h4 class="mt-3">Step 1: Data Collection</h4>
+                            <p>We collect posts from Bluesky related to stocks and financial markets using the Bluesky API.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="timeline-step">
+                        <div class="timeline-content">
+                            <div class="inner-circle bg-primary">
+                                <i class="fas fa-broom text-white"></i>
+                            </div>
+                            <h4 class="mt-3">Step 2: Data Preprocessing</h4>
+                            <p>We clean and preprocess the data, removing noise and extracting relevant information.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <div class="timeline-step">
+                        <div class="timeline-content">
+                            <div class="inner-circle bg-primary">
+                                <i class="fas fa-brain text-white"></i>
+                            </div>
+                            <h4 class="mt-3">Step 3: Sentiment Analysis</h4>
+                            <p>We analyze the sentiment of each post using multiple models for more accurate results.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="timeline-step">
+                        <div class="timeline-content">
+                            <div class="inner-circle bg-primary">
+                                <i class="fas fa-chart-bar text-white"></i>
+                            </div>
+                            <h4 class="mt-3">Step 4: Visualization</h4>
+                            <p>We visualize the sentiment trends and correlate them with stock market data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Form validation
+    (function() {
+        'use strict';
+        
+        // Fetch all forms that need validation
+        var forms = document.querySelectorAll('.needs-validation');
+        
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
+{% endblock %} 
