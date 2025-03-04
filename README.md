@@ -1,159 +1,155 @@
 # Bluesky Stock Analyzer
 
-A web application that analyzes stock market trends using social media data from Bluesky.
+A modern web application for analyzing stock market data and social media sentiment.
 
-## Project Overview
+## Features
 
-This project aims to analyze stock market trends by processing and analyzing social media data from Bluesky. The application is divided into two main stages:
+- Real-time stock data visualization
+- Social media sentiment analysis
+- Technical indicators and trend analysis
+- User-friendly interface with dark mode support
+- Responsive design for desktop and mobile
 
-### Stage 1: Data Collection and Sentiment Analysis
-- Fetch data from Bluesky API
-- Clean and preprocess the data
-- Perform sentiment analysis using pre-trained models
-- Store processed data for further analysis
+## Tech Stack
 
-### Stage 2: Stock Market Trend Analysis
-- Analyze sentiment data to identify trends
-- Correlate sentiment with stock market movements
-- Visualize insights through interactive dashboards
-- Potentially implement predictive models
+- **Frontend**: React, TypeScript, Material-UI
+- **Backend**: Flask, Python
+- **Data Analysis**: Pandas, NumPy, NLTK
+- **Visualization**: Recharts
 
-## Setup and Installation
+## Getting Started
 
-1. Clone the repository:
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+- Anaconda or Miniconda
+- Git
+
+### Installation
+
+#### Clone the Repository
+
 ```bash
 git clone https://github.com/yourusername/bluesky_stock_analyzer.git
 cd bluesky_stock_analyzer
 ```
 
-2. Create and activate a conda environment:
+#### Backend Setup (with Conda)
+
+1. Create a new Conda environment:
 ```bash
-# Create environment with Python 3.9 (recommended for compatibility)
-conda create -n bluesky_stock python=3.9
-conda activate bluesky_stock
-
-# Install PyTorch with CUDA support (if you have an NVIDIA GPU)
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
-
-# Install other dependencies
-conda install -c conda-forge flask flask-wtf python-dotenv requests pandas numpy matplotlib plotly nltk textblob vaderSentiment scikit-learn gunicorn pytest pytest-cov pytest-mock coverage
+conda create -n bluesky_env python=3.9
 ```
 
-3. Set up environment variables:
-Create a `.env` file in the root directory with the following variables:
-```
-FLASK_APP=run.py
-FLASK_ENV=development
-SECRET_KEY=your_secret_key
-BLUESKY_USERNAME=your_bluesky_username
-BLUESKY_PASSWORD=your_bluesky_password
+2. Activate the Conda environment:
+```bash
+conda activate bluesky_env
 ```
 
-4. Run the application:
-```
-flask run
-```
-
-## Project Structure
-
-```
-bluesky_stock_analyzer/
-├── app/
-│   ├── api/
-│   │   ├── __init__.py
-│   │   └── bluesky.py
-│   ├── models/
-│   │   ├── __init__.py
-│   │   └── sentiment.py
-│   ├── static/
-│   │   ├── css/
-│   │   │   └── style.css
-│   │   └── js/
-│   │       └── main.js
-│   ├── templates/
-│   │   ├── base.html
-│   │   ├── index.html
-│   │   └── dashboard.html
-│   ├── utils/
-│   │   ├── __init__.py
-│   │   └── data_processor.py
-│   ├── __init__.py
-│   ├── config.py
-│   └── routes.py
-├── data/
-├── tests/
-│   ├── conftest.py
-│   ├── __init__.py
-│   ├── README.md
-│   ├── unit/
-│   │   ├── __init__.py
-│   │   ├── test_bluesky_api.py
-│   │   ├── test_data_processor.py
-│   │   └── test_sentiment_analyzer.py
-│   ├── integration/
-│   │   ├── __init__.py
-│   │   ├── test_api_sentiment.py
-│   │   └── test_processor_sentiment.py
-│   └── functional/
-│       ├── __init__.py
-│       ├── test_app.py
-│       └── test_routes.py
-├── .env
-├── .gitignore
-├── requirements.txt
-├── README.md
-└── run.py
+3. Install the required packages:
+```bash
+pip install -r requirements.txt
 ```
 
-## Features
+4. Start the Flask backend server:
+```bash
+cd backend
+python run.py
+```
 
-- Bluesky API integration
-- Data preprocessing and cleaning
-- Sentiment analysis using multiple models
-- Interactive data visualization
-- Stock market trend analysis
-- User-friendly web interface
+The backend server will start at http://localhost:5000
 
-## Testing
+#### Frontend Setup
 
-The project includes a comprehensive test suite covering unit, integration, and functional tests.
+1. Navigate to the frontend directory:
+```bash
+cd frontend
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm start
+```
+
+The frontend will be available at http://localhost:3000
+
+## Usage
+
+1. Open your browser and navigate to http://localhost:3000
+2. Use the search bar to find a stock by symbol (e.g., AAPL, MSFT)
+3. View real-time stock data, charts, and sentiment analysis
+4. Switch between different time ranges and analysis views
+
+## Development
 
 ### Running Tests
 
-To run all tests:
-
+#### Backend Tests
 ```bash
+conda activate bluesky_env
+cd backend
 pytest
 ```
 
-To run tests with coverage:
-
+#### Frontend Tests
 ```bash
-pytest --cov=app tests/
+cd frontend
+npm test
 ```
 
-To generate a coverage report:
+### Environment Management
 
+#### Conda Commands
+
+- List all Conda environments:
 ```bash
-pytest --cov=app --cov-report=html tests/
+conda env list
 ```
 
-### Test Categories
+- Activate the environment:
+```bash
+conda activate bluesky_env
+```
 
-- **Unit Tests**: Test individual components in isolation
-- **Integration Tests**: Test interactions between components
-- **Functional Tests**: Test the application as a whole
+- Deactivate the environment:
+```bash
+conda deactivate
+```
 
-For more details about testing, see the [tests/README.md](tests/README.md) file.
+- Remove the environment:
+```bash
+conda env remove --name bluesky_env
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Missing dependencies**: Make sure you've installed all required packages
+```bash
+conda activate bluesky_env
+pip install -r requirements.txt
+```
+
+2. **Port already in use**: If port 5000 or 3000 is already in use, you can change the port in the configuration
+
+3. **Node.js errors**: Make sure you have the correct version of Node.js installed
+```bash
+node --version
+```
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Acknowledgements
+## Acknowledgments
 
-- Bluesky API
-- NLTK, TextBlob, and VADER for sentiment analysis
-- Flask web framework
-- Plotly and Matplotlib for data visualization
-- Pytest for testing 
+- [Bluesky](https://blueskyweb.org/) for providing the social media API
+- [Alpha Vantage](https://www.alphavantage.co/) for stock market data
+- All open-source libraries used in this project 
